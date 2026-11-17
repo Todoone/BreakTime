@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
+user-scalable=no">
+<title>倒计时｜2030年06月01日</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: system-ui, -apple-system, sans-serif;
+ }
+body {
+min-height: 100vh;
+background: linear-gradient(135deg, #4158D0, #C850C0);
+display: flex;
+align-items: center;
+justify-content: center;
+color: #fff;
+padding: 20px;
+}
+.box {
+background: rgba(255,255,255,0.15);
+backdrop-filter: blur(12px);
+padding: 40px 24px;
+border-radius: 20px;
+text-align: center;
+box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+width: 100%;
+max-width: 420px;
+}
+.title {
+font-size: 20px;
+margin-bottom: 30px;
+opacity: 0.95;
+}
+.time-wrap {
+display: flex;
+gap:12px;
+justify-content: center;
+flex-wrap: wrap;
+}
+.item {
+background: rgba(255,255,255,0.12);
+border-radius:14px;
+padding:16px 12px;
+min-width:70px;
+}
+.num {
+font-size: 36px;
+font-weight:bold;
+display:block;
+}
+.unit {
+font-size:14px;
+opacity:0.8;
+margin-top:4px;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<div class="title">距离 2030年06月01日 还剩</div>
+<div class="time-wrap">
+<div class="item">
+<span class="num" id="d">--</span>
+<span class="unit">天</span>
+</div>
+<div class="item">
+<span class="num" id="h">--</span>
+<span class="unit">时</span>
+</div>
+<div class="item">
+<span class="num" id="m">--</span>
+<span class="unit">分</span>
+</div>
+<div class="item">
+<span class="num" id="s">--</span>
+<span class="unit">秒</span>
+</div>
+</div>
+</div>
+
+<script>
+const target = new Date('2030-06-01 00:00:00');
+function update() {
+const now = new Date();
+const diff = target - now;
+if(diff <= 0) {
+document.getElementById('d').innerText = '0';
+document.getElementById('h').innerText = '00';
+document.getElementById('m').innerText = '00';
+document.getElementById('s').innerText = '00';
+return;
+}
+const d = Math.floor(diff / (1000*60*60*24));
+const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+const s = Math.floor((diff % (1000*60)) / 1000);
+document.getElementById('d').innerText = d;
+document.getElementById('h').innerText = String(h).padStart(2,'0');
+document.getElementById('m').innerText = String(m).padStart(2,'0');
+document.getElementById('s').innerText = String(s).padStart(2,'0');
+}
+ update();
+ setInterval(update, 1000);
+ </script>
+ </body>
+  </html>
